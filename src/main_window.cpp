@@ -14,6 +14,11 @@
 #include <iostream>
 #include "../include/qt_demo/main_window.hpp"
 #include <cmath>
+#include <QProcess>
+#include <QMessageBox>
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
+#include <QStringList>
 
 /*****************************************************************************
 ** Namespaces
@@ -66,6 +71,9 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     connect(ui.pushButton_u, SIGNAL(clicked()),this, SLOT(slot_key_clicked()));
     connect(ui.pushButton_13, SIGNAL(clicked()),this, SLOT(slot_key_clicked()));
     connect(ui.pushButton_space, SIGNAL(clicked()),this, SLOT(slot_key_clicked()));
+    connect(ui.ros_bag_btn, SIGNAL(clicked()),this,SLOT(slot_ros_bag_btn_clicked()));
+    connect(ui.Sim_btn, SIGNAL(clicked()),this,SLOT(slot_Sim_btn_clicked()));
+    connect(ui.scan_port_btn, SIGNAL(clicked()),this,SLOT(slot_scan_port_btn()));
 
 
     //initialize speed dashboard
@@ -76,14 +84,72 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     rot_dashboard->setGeometry(ui.widget_rot_speed->rect());
     lin_dashboard->set_speed(0);
     rot_dashboard->set_speed(0);
-
+    //Connect the signal and slot of Dashboard.
     connect(&qnode,SIGNAL(dashboard_update_signal(float,float,float)),this,SLOT(slot_dashboard_update(float,float,float)));
+    //Connect the power signal and slot
+    connect(&qnode, SIGNAL(power_update_signal(float)),this,SLOT(slot_power_update(float)));
+    //Connect the camera image signal and slot
+    connect(&qnode, SIGNAL(image_val(QImage)),this,SLOT(slot_update_camera(QImage)));
+    connect(ui.cam_btn,SIGNAL(clicked()),this,SLOT(slot_start_cam()));
+}
+
+//slot for the serial port
+void MainWindow::slot_scan_port_btn(){
+    ui.port_box->clear();
+    qDebug() << "adding port";
+    QStringList qls = scanPort();
+    ui.port_box->addItems(qls);
+}
+
+QStringList MainWindow::scanPort(){
+    QStringList scan_result;
+    qDebug() << "Scanning POrt";
+    foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
+        scan_result.append(info.portName());
+    }
+    return scan_result;
+}
+
+//slot for the camera
+void MainWindow::slot_update_camera(QImage qim){
+    ui.label_cam->setPixmap(QPixmap::fromImage(qim));
+}
+void MainWindow::slot_start_cam(){
+    qDebug() << "Sending q-image";
+    qnode.sub_image();
+
+}
+//slot for starting the simulation
+void MainWindow::slot_Sim_btn_clicked(){
+    qDebug() << "Starting Simulation Environment";
+    QMessageBox msg_box;
+    msg_box.setText("Please wait for Simulation Environment ready...");
+    msg_box.exec();
+    QProcess *gazebo_sim = new QProcess;
+    gazebo_sim->start("bash");
+    gazebo_sim->write("roslaunch noob_robot_gazebo noob_robot_gazebo.launch \n");
+    gazebo_sim->waitForStarted();
+}
+//slot for starting ros_bag rqt
+void MainWindow::slot_ros_bag_btn_clicked(){
+    qDebug() << "Starting Record Bag";
+    QMessageBox msg_box;
+    msg_box.setText("Please wait for the bag...");
+    msg_box.exec();
+    QProcess *rqt_bag = new QProcess;
+    rqt_bag->start("bash");
+    rqt_bag->write("rosrun rqt_bag rqt_bag \n");
+    rqt_bag->waitForStarted();
 }
 
 //slot for dashboard update
 void MainWindow::slot_dashboard_update(float x, float y, float theta){
     lin_dashboard->set_speed(100*std::sqrt(x*x + y*y));
     rot_dashboard->set_speed(100*theta);
+}
+//slot for power update
+void MainWindow::slot_power_update(float power){
+    ui.progressBar->setValue((int)power);
 }
 
 //slot for linear speed slider value changed

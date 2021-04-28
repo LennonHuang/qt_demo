@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1303</width>
+    <width>1338</width>
     <height>704</height>
    </rect>
   </property>
@@ -21,327 +21,470 @@
    <locale language="English" country="Australia"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="tab_manager">
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>0</height>
-       </size>
+   <widget class="QTabWidget" name="tab_manager">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>32</y>
+      <width>471</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="locale">
+     <locale language="English" country="Australia"/>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_status">
+     <attribute name="title">
+      <string>Ros Communications</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>320</y>
+        <width>455</width>
+        <height>231</height>
+       </rect>
       </property>
-      <property name="locale">
-       <locale language="English" country="Australia"/>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="currentIndex">
-       <number>0</number>
+      <property name="title">
+       <string>Logging</string>
       </property>
-      <widget class="QWidget" name="tab_status">
-       <attribute name="title">
-        <string>Ros Communications</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_12">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>320</y>
-          <width>455</width>
-          <height>231</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="title">
-         <string>Logging</string>
-        </property>
-        <widget class="QListView" name="view_logging">
-         <property name="geometry">
-          <rect>
-           <x>12</x>
-           <y>32</y>
-           <width>431</width>
-           <height>192</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QLabel" name="label_6">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>10</y>
-          <width>91</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>linear Speed</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>10</y>
-          <width>111</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Rotation Speed</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>40</y>
-          <width>451</width>
-          <height>261</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QWidget" name="widget_linear_speed" native="true"/>
-         </item>
-         <item>
-          <widget class="QWidget" name="widget_rot_speed" native="true"/>
-         </item>
-        </layout>
-       </widget>
+      <widget class="QListView" name="view_logging">
+       <property name="geometry">
+        <rect>
+         <x>12</x>
+         <y>32</y>
+         <width>431</width>
+         <height>192</height>
+        </rect>
+       </property>
       </widget>
      </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QTabWidget" name="tabWidget_2">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>10</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
       </property>
-      <property name="currentIndex">
-       <number>0</number>
+      <property name="text">
+       <string>linear Speed</string>
       </property>
-      <widget class="QWidget" name="tab_5">
-       <attribute name="title">
-        <string>Tab 1</string>
-       </attribute>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>330</y>
-          <width>320</width>
-          <height>182</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="keyboard">
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>10</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Rotation Speed</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>40</y>
+        <width>441</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QWidget" name="widget_linear_speed" native="true"/>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_rot_speed" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>60</y>
+      <width>511</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>40</y>
+        <width>320</width>
+        <height>182</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="keyboard">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
+          <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <widget class="QPushButton" name="pushButton_u">
-               <property name="text">
-                <string>u</string>
-               </property>
-               <property name="shortcut">
-                <string>U</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_i">
-               <property name="text">
-                <string>i</string>
-               </property>
-               <property name="shortcut">
-                <string>I</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_o">
-               <property name="text">
-                <string>o</string>
-               </property>
-               <property name="shortcut">
-                <string>O</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_5">
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <item>
-                <widget class="QPushButton" name="pushButton_j">
-                 <property name="text">
-                  <string>j</string>
-                 </property>
-                 <property name="shortcut">
-                  <string>J</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkbox_omni">
-                 <property name="text">
-                  <string>Omni-directional</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_l">
-                 <property name="text">
-                  <string>l</string>
-                 </property>
-                 <property name="shortcut">
-                  <string>L</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
-                <widget class="QPushButton" name="pushButton_m">
-                 <property name="text">
-                  <string>m</string>
-                 </property>
-                 <property name="shortcut">
-                  <string>M</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_13">
-                 <property name="text">
-                  <string>,</string>
-                 </property>
-                 <property name="shortcut">
-                  <string>,</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_14">
-                 <property name="text">
-                  <string>.</string>
-                 </property>
-                 <property name="shortcut">
-                  <string>.</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <item>
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>linear speed</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSlider" name="horizontalSlider_linear">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_linear">
-               <property name="minimumSize">
-                <size>
-                 <width>20</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>0</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_rot">
-             <item>
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>rotation speed</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSlider" name="horizontalSlider_rot">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_rot">
-               <property name="minimumSize">
-                <size>
-                 <width>20</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>0</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_space">
+            <widget class="QPushButton" name="pushButton_u">
              <property name="text">
-              <string>space (Stop)</string>
+              <string>u</string>
              </property>
              <property name="shortcut">
-              <string>Space</string>
+              <string>U</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_i">
+             <property name="text">
+              <string>i</string>
+             </property>
+             <property name="shortcut">
+              <string>I</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_o">
+             <property name="text">
+              <string>o</string>
+             </property>
+             <property name="shortcut">
+              <string>O</string>
              </property>
             </widget>
            </item>
           </layout>
          </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QPushButton" name="pushButton_j">
+               <property name="text">
+                <string>j</string>
+               </property>
+               <property name="shortcut">
+                <string>J</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkbox_omni">
+               <property name="text">
+                <string>Omni-directional</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_l">
+               <property name="text">
+                <string>l</string>
+               </property>
+               <property name="shortcut">
+                <string>L</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QPushButton" name="pushButton_m">
+               <property name="text">
+                <string>m</string>
+               </property>
+               <property name="shortcut">
+                <string>M</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_13">
+               <property name="text">
+                <string>,</string>
+               </property>
+               <property name="shortcut">
+                <string>,</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_14">
+               <property name="text">
+                <string>.</string>
+               </property>
+               <property name="shortcut">
+                <string>.</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
         </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_6">
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
-      </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>linear speed</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="horizontalSlider_linear">
+             <property name="value">
+              <number>30</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_linear">
+             <property name="minimumSize">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>30</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_rot">
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>rotation speed</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="horizontalSlider_rot">
+             <property name="value">
+              <number>30</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_rot">
+             <property name="minimumSize">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>30</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_space">
+           <property name="text">
+            <string>space (Stop)</string>
+           </property>
+           <property name="shortcut">
+            <string>Space</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
-    </item>
-   </layout>
+     <widget class="QPushButton" name="ros_bag_btn">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Record Bag</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>240</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Camera</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_cam">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>270</y>
+        <width>491</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid black</string>
+      </property>
+      <property name="text">
+       <string>No Image</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cam_btn">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>240</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Camera On</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QComboBox" name="port_box">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>200</y>
+        <width>86</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="scan_port_btn">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>200</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>scan</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>20</y>
+      <width>95</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>66</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>20</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>battery: </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Sim_btn">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>20</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: Red
+</string>
+    </property>
+    <property name="text">
+     <string>Sim Env Start</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1303</width>
+     <width>1338</width>
      <height>22</height>
     </rect>
    </property>

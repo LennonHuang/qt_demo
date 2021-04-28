@@ -59,13 +59,13 @@ void DashBoard::paintEvent(QPaintEvent* event) {
 
   draw_tachometer(painter);
   draw_speedometer(painter);
-  draw_gear(painter);
-  draw_thermometer(painter);
-  draw_oil_meter(painter);
+  //draw_gear(painter);
+  //draw_thermometer(painter);
+  //draw_oil_meter(painter);
 }
 
 void DashBoard::draw_tachometer(QPainter& painter) {
-  static QColor normal_color(26, 245, 245, 245);
+  static QColor normal_color(0, 0, 205, 245);
   static QColor overrun_color(245, 64, 64, 225);
 
   // Draw Outline
@@ -131,7 +131,7 @@ void DashBoard::draw_tachometer(QPainter& painter) {
     QPoint(4, 0),
     QPoint(0, -6)
   };
-  static QColor hand_color(26, 245, 245, 176);
+  static QColor hand_color(0, 0, 0, 176);
   painter.save();
   painter.setPen(Qt::NoPen);
   painter.setBrush(hand_color);
@@ -152,15 +152,15 @@ void DashBoard::draw_tachometer(QPainter& painter) {
 void DashBoard::draw_speedometer(QPainter& painter) {
   painter.save();
 
-  painter.setPen(QColor(64, 64, 245));
+  painter.setPen(QColor(0, 0, 0));
   painter.setFont(QFont("DejaVu Sans", 6, 50, true));
   painter.drawText(QRect(80, 50, 70, 20), Qt::AlignCenter, "SPEED");
 
-  painter.setPen(QColor(26, 245, 245));
+  painter.setPen(QColor(0, 0, 0));
   painter.setFont(QFont("DejaVu Sans", 24, 63, true));
   painter.drawText(QRect(80, 50, 70, 50), Qt::AlignBottom | Qt::AlignLeft, QString("%0").arg(QString::number(_speed), 3,'0'));
 
-  painter.setPen(QColor(26, 245, 245));
+  painter.setPen(QColor(0, 0, 0));
   painter.setFont(QFont("DejaVu Sans", 8, 63, true));
   painter.drawText(QRect(145, 75, 40, 20), Qt::AlignBottom | Qt::AlignLeft, "cm/s");
 

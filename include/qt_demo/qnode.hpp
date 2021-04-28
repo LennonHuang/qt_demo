@@ -25,9 +25,12 @@
 #include <QThread>
 #include <QStringListModel>
 #include <std_msgs/String.h>
+#include <std_msgs/Float32.h>
 #include <geometry_msgs/Twist.h>
-
-
+#include <image_transport/image_transport.h>
+#include <cv_bridge/cv_bridge.h>
+#include <sensor_msgs/image_encodings.h>
+#include <QImage>
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/
@@ -47,6 +50,7 @@ public:
 	bool init(const std::string &master_url, const std::string &host_url);
 	void run();
     void set_cmd_vel(char key, float linear, float rot);
+    void sub_image();
 
 	/*********************
 	** Logging
@@ -66,6 +70,8 @@ Q_SIGNALS:
 	void loggingUpdated();
     void rosShutdown();
     void dashboard_update_signal(float x,float y,float theta);
+    void power_update_signal(float p);
+    void image_val(QImage);
 
 private:
 	int init_argc;
@@ -74,7 +80,13 @@ private:
     ros::Publisher my_cmd_publisher;
     QStringListModel logging_model;
     ros::Subscriber my_cmd_sub;
+    ros::Publisher power_val_pub;
+    ros::Subscriber power_val_sub;
+    image_transport::Subscriber image_sub;
     void dashboard_callback(const geometry_msgs::Twist &msg);
+    void power_callback(const std_msgs::Float32 &msg);
+    void image_calback(const sensor_msgs::ImageConstPtr &msg);
+    QImage Mat2QImage(cv::Mat const& src);
 };
 
 }  // namespace qt_demo

@@ -15,8 +15,14 @@
 #include <geometry_msgs/Twist.h>
 #include <string>
 #include <std_msgs/String.h>
+#include <std_msgs/Float32.h>
 #include <sstream>
+#include <stdlib.h>
 #include "../include/qt_demo/qnode.hpp"
+#include <image_transport/image_transport.h>
+#include <cv_bridge/cv_bridge.h>
+#include <QImage>
+#include <QMessageBox>
 
 /*****************************************************************************
 ** Namespaces
@@ -50,8 +56,10 @@ bool QNode::init() {
 	ros::NodeHandle n;
 	// Add your ros communications here.
 	chatter_publisher = n.advertise<std_msgs::String>("chatter", 1000);
-    my_cmd_publisher = n.advertise<geometry_msgs::Twist>("my_cmd_vel",1000);
-    my_cmd_sub = n.subscribe("my_cmd_vel",1000,&QNode::dashboard_callback,this);
+    my_cmd_publisher = n.advertise<geometry_msgs::Twist>("cmd_vel",1000);
+    my_cmd_sub = n.subscribe("cmd_vel",1000,&QNode::dashboard_callback,this);
+    power_val_pub = n.advertise<std_msgs::Float32>("power_val",1000);
+    power_val_sub = n.subscribe("power_val",1000,&QNode::power_callback,this);
     start();//Qthread function to QNode::run function
 	return true;
 }
@@ -68,24 +76,87 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
 	ros::NodeHandle n;
 	// Add your ros communications here.
 	chatter_publisher = n.advertise<std_msgs::String>("chatter", 1000);
-    my_cmd_publisher = n.advertise<geometry_msgs::Twist>("my_cmd_vel",1000);
-    my_cmd_sub = n.subscribe("my_cmd_vel",1000,&QNode::dashboard_callback,this);
+    my_cmd_publisher = n.advertise<geometry_msgs::Twist>("cmd_vel",1000);
+    my_cmd_sub = n.subscribe("cmd_vel",1000,&QNode::dashboard_callback,this);
+    power_val_pub = n.advertise<std_msgs::Float32>("power_val",1000);
+    power_val_sub = n.subscribe("power_val",1000,&QNode::power_callback,this);
 	start();
 	return true;
+}
+
+void QNode::sub_image(){
+    ros::NodeHandle nh;
+    image_transport::ImageTransport it(nh);
+    std::string img_topic= "/camera/rgb/image_raw";
+    image_sub = it.subscribe(img_topic,100,&QNode::image_calback,this);
+}
+
+void QNode::image_calback(const sensor_msgs::ImageConstPtr &msg){
+    cv_bridge::CvImagePtr cv_ptr;
+    cv_ptr = cv_bridge::toCvCopy(msg,msg->encoding);
+    QImage qim = Mat2QImage(cv_ptr->image);
+    emit image_val(qim);
+}
+
+QImage QNode::Mat2QImage(cv::Mat const& src)
+{
+  QImage dest(src.cols, src.rows, QImage::Format_ARGB32);
+
+  const float scale = 255.0;
+
+  if (src.depth() == CV_8U) {
+    if (src.channels() == 1) {
+      for (int i = 0; i < src.rows; ++i) {
+        for (int j = 0; j < src.cols; ++j) {
+          int level = src.at<quint8>(i, j);
+          dest.setPixel(j, i, qRgb(level, level, level));
+        }
+      }
+    } else if (src.channels() == 3) {
+      for (int i = 0; i < src.rows; ++i) {
+        for (int j = 0; j < src.cols; ++j) {
+          cv::Vec3b bgr = src.at<cv::Vec3b>(i, j);
+          dest.setPixel(j, i, qRgb(bgr[2], bgr[1], bgr[0]));
+        }
+      }
+    }
+  } else if (src.depth() == CV_32F) {
+    if (src.channels() == 1) {
+      for (int i = 0; i < src.rows; ++i) {
+        for (int j = 0; j < src.cols; ++j) {
+          int level = scale * src.at<float>(i, j);
+          dest.setPixel(j, i, qRgb(level, level, level));
+        }
+      }
+    } else if (src.channels() == 3) {
+      for (int i = 0; i < src.rows; ++i) {
+        for (int j = 0; j < src.cols; ++j) {
+          cv::Vec3f bgr = scale * src.at<cv::Vec3f>(i, j);
+          dest.setPixel(j, i, qRgb(bgr[2], bgr[1], bgr[0]));
+        }
+      }
+    }
+  }
+
+  return dest;
 }
 
 //Call back function for topic subscriber
 void QNode::dashboard_callback(const geometry_msgs::Twist &msg){
     emit dashboard_update_signal(msg.linear.x, msg.linear.y, msg.angular.z);
 }
-
+void QNode::power_callback(const std_msgs::Float32 &msg){
+    emit power_update_signal(msg.data);
+}
 
 void QNode::run() {
 	ros::Rate loop_rate(1);
 	int count = 0;
 	while ( ros::ok() ) {
         //geometry_msgs::Twist command;
-
+        std_msgs::Float32 power;
+        power.data = 100 - std::rand()%10;
+        power_val_pub.publish(power);
 
 		std_msgs::String msg;
 		std::stringstream ss;

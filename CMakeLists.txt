@@ -11,10 +11,13 @@ project(qt_demo)
 ##############################################################################
 
 # qt_build provides the qt cmake glue, roscpp the comms for a default talker
-find_package(catkin REQUIRED COMPONENTS qt_build roscpp)
+find_package(catkin REQUIRED COMPONENTS qt_build roscpp sensor_msgs
+cv_bridge
+std_msgs
+image_transport)
 include_directories(${catkin_INCLUDE_DIRS})
 #add Qt5
-find_package(Qt5 REQUIRED Core Widgets)
+find_package(Qt5 REQUIRED Core Widgets SerialPort)
 set(QT_LIBRARIES Qt5::Widgets)
 # Use this to define what the package will export (e.g. libs, headers).
 # Since the default here is to produce only a binary, we don't worry about
@@ -55,4 +58,8 @@ file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINK
 add_executable(qt_demo ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
 target_link_libraries(qt_demo ${QT_LIBRARIES} ${catkin_LIBRARIES})
 install(TARGETS qt_demo RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+##Use QtSerialPort Module
+qt5_use_modules(${PROJECT_NAME} SerialPort)
+
 

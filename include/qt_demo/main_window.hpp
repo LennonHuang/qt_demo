@@ -16,6 +16,9 @@
 #include "ui_main_window.h"
 #include "qnode.hpp"
 #include "DashBoard.hpp"
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
+#include <QString>
 
 /*****************************************************************************
 ** Namespace
@@ -35,6 +38,8 @@ Q_OBJECT
 public:
 	MainWindow(int argc, char** argv, QWidget *parent = 0);
 	~MainWindow();
+
+    QSerialPort *my_serialPort;
 
 	void ReadSettings(); // Load up qt program settings at startup
 	void WriteSettings(); // Save qt program settings when closing
@@ -59,12 +64,20 @@ public Q_SLOTS:
 
     void slot_key_clicked();
     void slot_dashboard_update(float x,float y,float theta);
+    void slot_power_update(float power);
+    void slot_ros_bag_btn_clicked();
+    void slot_Sim_btn_clicked();
+
+    void slot_update_camera(QImage);
+    void slot_start_cam();
+    void slot_scan_port_btn();
 
 private:
 	Ui::MainWindowDesign ui;
 	QNode qnode;
     DashBoard *lin_dashboard;
     DashBoard *rot_dashboard;
+    QStringList scanPort();
 };
 
 }  // namespace qt_demo
