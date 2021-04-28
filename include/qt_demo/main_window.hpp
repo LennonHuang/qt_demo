@@ -19,6 +19,8 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QString>
+#include <QComboBox>
+#include "qrviz.hpp"
 
 /*****************************************************************************
 ** Namespace
@@ -71,6 +73,7 @@ public Q_SLOTS:
     void slot_update_camera(QImage);
     void slot_start_cam();
     void slot_scan_port_btn();
+    void slot_fixed_frame_changed(QString);
 
 private:
 	Ui::MainWindowDesign ui;
@@ -78,6 +81,8 @@ private:
     DashBoard *lin_dashboard;
     DashBoard *rot_dashboard;
     QStringList scanPort();
+    QComboBox *fixed_box;
+    qrviz *my_rviz;
 };
 
 }  // namespace qt_demo

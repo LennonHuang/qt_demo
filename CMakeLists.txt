@@ -11,7 +11,7 @@ project(qt_demo)
 ##############################################################################
 
 # qt_build provides the qt cmake glue, roscpp the comms for a default talker
-find_package(catkin REQUIRED COMPONENTS qt_build roscpp sensor_msgs
+find_package(catkin REQUIRED COMPONENTS rviz qt_build roscpp sensor_msgs
 cv_bridge
 std_msgs
 image_transport)

@@ -19,6 +19,8 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QStringList>
+#include <QComboBox>
+
 
 /*****************************************************************************
 ** Namespaces
@@ -80,6 +82,25 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     lin_dashboard = new DashBoard(ui.widget_linear_speed);
     rot_dashboard = new DashBoard(ui.widget_rot_speed);
 
+    //init the tree Widget
+    ui.treeWidget->setEnabled(false);
+    //ui.treeWidget->setColumnCount(2);
+    //Global Options
+    QTreeWidgetItem *global_option = new QTreeWidgetItem(QStringList() << "Global Options");
+    ui.treeWidget->setHeaderHidden(true);
+    ui.treeWidget->addTopLevelItem(global_option);
+    global_option->setExpanded(true);
+    //Fixed Frame
+    QTreeWidgetItem *fixed_frame = new QTreeWidgetItem(QStringList() << "Fixed Frame");
+    fixed_box = new QComboBox();
+    fixed_box->addItems(QStringList() << "map" << "odom");
+    fixed_box->setMaximumWidth(100);
+    fixed_box->setEditable(true);
+    global_option->addChild(fixed_frame);
+    ui.treeWidget->setItemWidget(fixed_frame, 1 , fixed_box);
+    connect(fixed_box,SIGNAL(currentTextChanged(QString)),this,SLOT(slot_fixed_frame_changed(QString)));
+
+
     lin_dashboard->setGeometry(ui.widget_linear_speed->rect());
     rot_dashboard->setGeometry(ui.widget_rot_speed->rect());
     lin_dashboard->set_speed(0);
@@ -91,6 +112,12 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //Connect the camera image signal and slot
     connect(&qnode, SIGNAL(image_val(QImage)),this,SLOT(slot_update_camera(QImage)));
     connect(ui.cam_btn,SIGNAL(clicked()),this,SLOT(slot_start_cam()));
+}
+
+//slot for fixed frame changed
+void MainWindow::slot_fixed_frame_changed(QString){
+    qDebug() << "Changing frame";
+    my_rviz->setFixedFrame(fixed_box->currentText());
 }
 
 //slot for the serial port
@@ -227,17 +254,21 @@ void MainWindow::on_button_connect_clicked(bool check ) {
         if ( !qnode.init() ) {
             showNoMasterMessage();
         } else {
+            ui.treeWidget->setEnabled(true);
             ui.button_connect->setEnabled(false);
+            my_rviz = new qrviz(ui.Layout_rviz);//Start RVIZ
         }
     } else {
         if ( ! qnode.init(ui.line_edit_master->text().toStdString(),
                           ui.line_edit_host->text().toStdString()) ) {
             showNoMasterMessage();
         } else {
+            ui.treeWidget->setEnabled(true);
             ui.button_connect->setEnabled(false);
             ui.line_edit_master->setReadOnly(true);
             ui.line_edit_host->setReadOnly(true);
             ui.line_edit_topic->setReadOnly(true);
+            my_rviz = new qrviz(ui.Layout_rviz);//Start RVIZ
         }
     }
 }
