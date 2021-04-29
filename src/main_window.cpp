@@ -100,6 +100,47 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     ui.treeWidget->setItemWidget(fixed_frame, 1 , fixed_box);
     connect(fixed_box,SIGNAL(currentTextChanged(QString)),this,SLOT(slot_fixed_frame_changed(QString)));
 
+    //init grid
+    QTreeWidgetItem *grid = new QTreeWidgetItem(QStringList() << "Grid");
+    QCheckBox *grid_checkbox = new QCheckBox();
+    ui.treeWidget->addTopLevelItem(grid);
+    ui.treeWidget->setItemWidget(grid,1,grid_checkbox);
+    grid->setExpanded(true);
+    //add grid cell number
+    QTreeWidgetItem *cell_count = new QTreeWidgetItem(QStringList() << "Plane Cell");
+    grid->addChild(cell_count);
+    cell_count_box = new QSpinBox;
+    cell_count_box->setValue(14);
+    ui.treeWidget->setItemWidget(cell_count,1,cell_count_box);
+    //add color
+    QTreeWidgetItem *grid_color = new QTreeWidgetItem(QStringList() << "Color");
+    grid->addChild(grid_color);
+    grid_color_box = new QComboBox();
+    grid_color_box->addItem("160;160;160");//RGB
+    grid_color_box->setEditable(true);
+    ui.treeWidget->setItemWidget(grid_color,1,grid_color_box);
+    connect(grid_checkbox,SIGNAL(stateChanged(int)),this,SLOT(slot_display_grid(int)));
+
+    //init tf GUI
+    QTreeWidgetItem *tf_gui = new QTreeWidgetItem(QStringList() << "tf");
+    QCheckBox *tf_checkbox = new QCheckBox();
+    ui.treeWidget->addTopLevelItem(tf_gui);
+    ui.treeWidget->setItemWidget(tf_gui,1,tf_checkbox);
+    connect(tf_checkbox,SIGNAL(stateChanged(int)),this,SLOT(slot_display_tf(int)));
+
+    //init Laser scan GUI
+    QTreeWidgetItem *scan_gui = new QTreeWidgetItem(QStringList() <<"Laser Scan");
+    QCheckBox *scan_checkbox = new QCheckBox();
+    ui.treeWidget->addTopLevelItem(scan_gui);
+    ui.treeWidget->setItemWidget(scan_gui,1,scan_checkbox);
+    QTreeWidgetItem *scan_topics = new QTreeWidgetItem(QStringList() << "Laser Topics");
+    scan_gui->addChild(scan_topics);
+    scan_topics_box = new QComboBox();
+    scan_topics_box->setEditable(true);
+    scan_topics_box->addItem("/scan");
+    ui.treeWidget->setItemWidget(scan_topics,1,scan_topics_box);
+    scan_gui->setExpanded(true);
+    connect(scan_checkbox,SIGNAL(stateChanged(int)),this,SLOT(slot_display_scan(int)));
 
     lin_dashboard->setGeometry(ui.widget_linear_speed->rect());
     rot_dashboard->setGeometry(ui.widget_rot_speed->rect());
@@ -112,6 +153,28 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //Connect the camera image signal and slot
     connect(&qnode, SIGNAL(image_val(QImage)),this,SLOT(slot_update_camera(QImage)));
     connect(ui.cam_btn,SIGNAL(clicked()),this,SLOT(slot_start_cam()));
+}
+
+//slot for scan display
+void MainWindow::slot_display_scan(int state){
+    bool enable = state>1?true:false;
+    my_rviz->Display_scan(scan_topics_box->currentText(),enable);
+}
+
+//slot for tf display
+void MainWindow::slot_display_tf(int state){
+    bool enable = state>1?true:false;
+    my_rviz->Display_tf(enable);
+}
+
+//slot for grid display
+void MainWindow::slot_display_grid(int state){
+    qDebug() << "Displaying Grid";
+    bool enable = state>1?true:false;
+    QStringList qli = grid_color_box->currentText().split(";");
+    QColor color = QColor(qli[0].toInt(),qli[1].toInt(),qli[2].toInt());
+    qDebug() << enable;
+    my_rviz->Display_Grid(cell_count_box->text().toInt(), color, enable);
 }
 
 //slot for fixed frame changed

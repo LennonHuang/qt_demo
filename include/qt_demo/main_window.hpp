@@ -21,6 +21,7 @@
 #include <QString>
 #include <QComboBox>
 #include "qrviz.hpp"
+#include <QSpinBox>
 
 /*****************************************************************************
 ** Namespace
@@ -74,6 +75,9 @@ public Q_SLOTS:
     void slot_start_cam();
     void slot_scan_port_btn();
     void slot_fixed_frame_changed(QString);
+    void slot_display_grid(int state);
+    void slot_display_tf(int state);
+    void slot_display_scan(int state);
 
 private:
 	Ui::MainWindowDesign ui;
@@ -83,6 +87,10 @@ private:
     QStringList scanPort();
     QComboBox *fixed_box;
     qrviz *my_rviz;
+
+    QSpinBox *cell_count_box;
+    QComboBox *grid_color_box;
+    QComboBox *scan_topics_box;
 };
 
 }  // namespace qt_demo
