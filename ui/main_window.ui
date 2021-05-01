@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1338</width>
-    <height>704</height>
+    <width>1537</width>
+    <height>918</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,10 +24,10 @@
    <widget class="QTabWidget" name="tab_manager">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>32</y>
+      <x>50</x>
+      <y>40</y>
       <width>451</width>
-      <height>601</height>
+      <height>631</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -40,11 +40,11 @@
      <locale language="English" country="Australia"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_status">
      <attribute name="title">
-      <string>Ros Communications</string>
+      <string>Ros Log</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_12">
       <property name="geometry">
@@ -154,10 +154,10 @@
    <widget class="QTabWidget" name="tabWidget_2">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>50</y>
-      <width>531</width>
-      <height>581</height>
+      <x>570</x>
+      <y>70</y>
+      <width>661</width>
+      <height>721</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -170,17 +170,45 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>Serial Scanner</string>
+     </attribute>
+     <widget class="QComboBox" name="port_box">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>200</y>
+        <width>86</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="scan_port_btn">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>200</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>scan</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Controller</string>
      </attribute>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>40</y>
+        <x>130</x>
+        <y>20</y>
         <width>320</width>
         <height>182</height>
        </rect>
@@ -377,39 +405,13 @@
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="ros_bag_btn">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Record Bag</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>240</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Camera</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_cam">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>270</y>
-        <width>491</width>
-        <height>271</height>
+        <x>30</x>
+        <y>330</y>
+        <width>571</width>
+        <height>321</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -425,46 +427,31 @@
        <string>No Image</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="cam_btn">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>240</y>
-        <width>89</width>
-        <height>25</height>
+        <y>290</y>
+        <width>145</width>
+        <height>27</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Camera On</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_6">
-     <attribute name="title">
-      <string>Tab 2</string>
-     </attribute>
-     <widget class="QComboBox" name="port_box">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>200</y>
-        <width>86</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="scan_port_btn">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>200</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>scan</string>
-      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Camera</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cam_btn">
+         <property name="text">
+          <string>Camera On</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab">
@@ -476,29 +463,11 @@
        <rect>
         <x>30</x>
         <y>20</y>
-        <width>481</width>
-        <height>521</height>
+        <width>591</width>
+        <height>631</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_8">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <widget class="QPushButton" name="pushButton">
-           <property name="text">
-            <string>PushButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_2">
-           <property name="text">
-            <string>PushButton</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
        <item>
         <layout class="QVBoxLayout" name="Layout_rviz"/>
        </item>
@@ -506,39 +475,13 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>20</y>
-      <width>95</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>66</number>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>20</y>
-      <width>67</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>battery: </string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="Sim_btn">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>20</y>
-      <width>121</width>
-      <height>51</height>
+      <x>50</x>
+      <y>10</y>
+      <width>359</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -549,13 +492,52 @@
      <string>Sim Env Start</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>10</y>
+      <width>359</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>battery: </string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>10</y>
+      <width>359</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>66</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ros_bag_btn">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>10</y>
+      <width>111</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Record Bag</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1338</width>
+     <width>1537</width>
      <height>22</height>
     </rect>
    </property>
@@ -573,176 +555,165 @@
    <addaction name="menu_File"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QDockWidget" name="dock_status">
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>325</width>
-     <height>444</height>
-    </size>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::RightDockWidgetArea</set>
-   </property>
+  <widget class="QDockWidget" name="dockWidget_3">
    <property name="windowTitle">
-    <string>Command Panel</string>
+    <string>ROS Network</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_2">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QFrame" name="frame">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Ros Master</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label">
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <property name="text">
-              <string>Ros Master Url</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" colspan="2">
-            <widget class="QLineEdit" name="line_edit_master">
-             <property name="text">
-              <string>http://192.168.1.2:11311/</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_2">
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <property name="text">
-              <string>Ros IP</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" colspan="2">
-            <widget class="QLineEdit" name="line_edit_host">
-             <property name="text">
-              <string>192.168.1.67</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <property name="text">
-              <string>Ros Hostname</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0" colspan="2">
-            <widget class="QLineEdit" name="line_edit_topic">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>unused</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0" colspan="2">
-            <widget class="QCheckBox" name="checkbox_use_environment">
-             <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string>Use environment variables</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="0" colspan="2">
-            <widget class="QCheckBox" name="checkbox_remember_settings">
-             <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string>Remember settings on startup</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="1">
-            <widget class="QPushButton" name="button_connect">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>Set the target to the current joint trajectory state.</string>
-             </property>
-             <property name="statusTip">
-              <string>Clear all waypoints and set the target to the current joint trajectory state.</string>
-             </property>
-             <property name="text">
-              <string>Connect</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="quit_button">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Quit</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>0</y>
+       <width>277</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>Ros Master</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="3" column="0" colspan="2">
+          <widget class="QLineEdit" name="line_edit_host">
+           <property name="text">
+            <string>192.168.1.67</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkbox_use_environment">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>Use environment variables</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="text">
+            <string>Ros Master Url</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="text">
+            <string>Ros IP</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLineEdit" name="line_edit_master">
+           <property name="text">
+            <string>http://192.168.1.2:11311/</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkbox_remember_settings">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>Remember settings on startup</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="2">
+          <widget class="QLineEdit" name="line_edit_topic">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>unused</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
+          <widget class="QPushButton" name="button_connect">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Set the target to the current joint trajectory state.</string>
+           </property>
+           <property name="statusTip">
+            <string>Clear all waypoints and set the target to the current joint trajectory state.</string>
+           </property>
+           <property name="text">
+            <string>Connect</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="text">
+            <string>Ros Hostname</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="0">
+          <widget class="QPushButton" name="quit_button">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Quit</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
   <action name="action_Quit">
@@ -771,6 +742,9 @@
     <string>About &amp;Qt</string>
    </property>
   </action>
+  <zorder>dock_status</zorder>
+  <zorder>dockWidget_2</zorder>
+  <zorder>dockWidget_3</zorder>
  </widget>
  <resources>
   <include location="../resources/images.qrc"/>

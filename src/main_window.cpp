@@ -126,6 +126,12 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     QCheckBox *tf_checkbox = new QCheckBox();
     ui.treeWidget->addTopLevelItem(tf_gui);
     ui.treeWidget->setItemWidget(tf_gui,1,tf_checkbox);
+    tf_gui->setExpanded(true);
+    QTreeWidgetItem *marker_scale = new QTreeWidgetItem(QStringList() << "Marker Scale");
+    tf_gui->addChild(marker_scale);
+    marker_scale_box = new QDoubleSpinBox();
+    marker_scale_box->setValue(1.0);
+    ui.treeWidget->setItemWidget(marker_scale,1,marker_scale_box);
     connect(tf_checkbox,SIGNAL(stateChanged(int)),this,SLOT(slot_display_tf(int)));
 
     //init Laser scan GUI
@@ -142,6 +148,13 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     scan_gui->setExpanded(true);
     connect(scan_checkbox,SIGNAL(stateChanged(int)),this,SLOT(slot_display_scan(int)));
 
+    //init Robot Model GUI in rviz
+    QTreeWidgetItem *model_gui = new QTreeWidgetItem(QStringList() <<"Robot Model");
+    QCheckBox *model_checkbox = new QCheckBox();
+    ui.treeWidget->addTopLevelItem(model_gui);
+    ui.treeWidget->setItemWidget(model_gui,1,model_checkbox);
+    connect(model_checkbox,SIGNAL(stateChanged(int)),this,SLOT(slot_display_model(int)));
+
     lin_dashboard->setGeometry(ui.widget_linear_speed->rect());
     rot_dashboard->setGeometry(ui.widget_rot_speed->rect());
     lin_dashboard->set_speed(0);
@@ -155,6 +168,12 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     connect(ui.cam_btn,SIGNAL(clicked()),this,SLOT(slot_start_cam()));
 }
 
+//slot for robot model display
+void MainWindow::slot_display_model(int state){
+    bool enable = state>1?true:false;
+    my_rviz->Display_model(enable);
+}
+
 //slot for scan display
 void MainWindow::slot_display_scan(int state){
     bool enable = state>1?true:false;
@@ -164,7 +183,7 @@ void MainWindow::slot_display_scan(int state){
 //slot for tf display
 void MainWindow::slot_display_tf(int state){
     bool enable = state>1?true:false;
-    my_rviz->Display_tf(enable);
+    my_rviz->Display_tf(marker_scale_box->text().toDouble(),enable);
 }
 
 //slot for grid display

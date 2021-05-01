@@ -30,12 +30,13 @@ void qrviz::Display_Grid(int cell_count, QColor color, bool enable){
     ROS_ASSERT(_grid != NULL);
 }
 
-void qrviz::Display_tf(bool enable){
+void qrviz::Display_tf(double marker_scale,bool enable){
     if(_tf_display != nullptr){
         delete  _tf_display;
         _tf_display = nullptr;
     }
     _tf_display = _manger->createDisplay("rviz/TF","my_tf",enable);
+    _tf_display->subProp("Marker Scale")->setValue(marker_scale);
     ROS_ASSERT(_tf_display != NULL);
 }
 
@@ -47,4 +48,13 @@ void qrviz::Display_scan(QString scan_topics, bool enable){
     _scan_display = _manger->createDisplay("rviz/LaserScan","my_Laser_scan",enable);
     _scan_display->subProp("Topic")->setValue(scan_topics);
     ROS_ASSERT(_scan_display != NULL);
+}
+
+void qrviz::Display_model(bool enable){
+    if(_model_display != nullptr){
+        delete  _model_display;
+        _model_display = nullptr;
+    }
+    _model_display = _manger->createDisplay("rviz/RobotModel","my_model",enable);
+    ROS_ASSERT(_model_display != NULL);
 }

@@ -22,6 +22,7 @@
 #include <QComboBox>
 #include "qrviz.hpp"
 #include <QSpinBox>
+#include <QDoubleSpinBox>
 
 /*****************************************************************************
 ** Namespace
@@ -78,6 +79,7 @@ public Q_SLOTS:
     void slot_display_grid(int state);
     void slot_display_tf(int state);
     void slot_display_scan(int state);
+    void slot_display_model(int state);
 
 private:
 	Ui::MainWindowDesign ui;
@@ -91,6 +93,7 @@ private:
     QSpinBox *cell_count_box;
     QComboBox *grid_color_box;
     QComboBox *scan_topics_box;
+    QDoubleSpinBox *marker_scale_box;
 };
 
 }  // namespace qt_demo
